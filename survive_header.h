@@ -16,21 +16,39 @@ int restTime = 1;
 int day = 1;
 int hour = 8;
 
-typedef struct wolf {
-	int attack: 30;
-	int armor: 10;
-	int health: 30;
-} wolf;
 
-
+//system methods
 void printline(){
     printf("=======================================================\n");
 }
 
+
+int check_time(int act_time,int current_time){
+    if(24-current_time >= act_time){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
 void timewarn(){
+    printline();
     printf("You don't have enough time to do that\n");
 }
 
+int check_alive(){
+    if(health <= 0 ){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+
+
+//player actions
 void findfood(){
     hour+=findfoodTime;
 }
@@ -40,12 +58,19 @@ void hunt(){
 }
 
 void rest(){
-    hour+=restTime;
-    energy+=10;
-    if(energy > 100){
-        energy = 100;
+    if (energy == 100){
+        printf("You don't need to rest now\n");
     }
-    printf("Your energy increases to %d\n", energy);
+
+    else{
+        hour+=restTime;
+        energy+=10;
+        if(energy > 100){
+            energy = 100;
+        }
+        printf("Your energy increases to %d\n", energy);
+    }
+
 }
 
 void sleep(){
@@ -53,6 +78,7 @@ void sleep(){
     energy = 100;
     hour = 8;
 }
+
 
 
 #endif // SURVIVE_HEADER_H_INCLUDED
