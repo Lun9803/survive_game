@@ -49,11 +49,19 @@ void timewarn(){
 
 int check_alive(){
     if(health <= 0 ){
+        if(hour == 24){
+            day+=1;
+            hour = 0;
+        }
         printf("You died because of low health\n");
         printf("You lived for %d days and %d hours, good luck next time!\n", day, hour);
         return 1;
     }
     else if(hunger<=0){
+        if(hour == 24){
+            day+=1;
+            hour = 0;
+        }
         printf("You died beacause of hunger\n");
         printf("You lived for %d days and %d hours, good luck next time!\n", day, hour);
         return 1;
@@ -81,6 +89,9 @@ void findfood(){
         if(random < 3){
             hunger+=15;
             health+=10;
+            if(health>100){
+                health = 100;
+            }
             printf("You have found something to eat, your hunger is now %d and health is %d\n", hunger, health);
         }
         else{
@@ -119,6 +130,9 @@ void rest(){
         health+=5;
         if(energy > 100){
             energy = 100;
+        }
+        if(health>100){
+            health = 100;
         }
         printf("Your energy increases to %d\n", energy);
     }

@@ -15,8 +15,14 @@ int dmg(int attack, int armor){
 //enconters random animal
 void encounter_random(){
     int random = rand() % 100;
-    if(random < 5){
+    if(random < 9){
         encounter_wolf();
+    }
+    else if(random < 14){
+        encounter_tiger();
+    }
+    else if(random < 19){
+        encounter_rabbit();
     }
 }
 

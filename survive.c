@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "survive_header.h"
+
 #include "monster.h"
 #include "combat.h"
 
@@ -20,18 +21,23 @@ int main(){
 
 
     while(strcmp(command, "q") != 0){
+
         printline();
-        printf("Day %d begins, the time is %d:00\n Your health is %d and hunger is %d\n", day, hour, health, hunger);
+        printf("Day %d begins, the time is %d:00\nYour health is %d and hunger is %d\n", day, hour, health, hunger);
 
         printline();
 
         int move;
         while(hour < 24){
-            printf("you have the following options:\n   1. Find food\n   2. Hunt\n   3. Rest\n   4. Enhance Armor\n");
+            printf("you have the following options:\n   0. Check condition\n   1. Find food\n   2. Hunt\n   3. Rest\n   4. Enhance Armor\n");
             printf("Enter the number of the move\n");
             scanf("%d", &move);
 
             //find food
+            if(move == 0){
+                printf("health: %d   hunger: %d   energy: %d   armor: %d   attack: %d\n", health, hunger, energy, armor, attack);
+            }
+
             if(move == 1){
                 if(check_time(findfoodTime, hour)==1){
                     findfood();
